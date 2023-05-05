@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page Products
+{% endblock %}
+
+{% block content %}
+
+	<h2>Liste des produits</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nom</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th>Modifier</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in products %}
+				<tr>
+					<td>{{ product.id }}</td>
+					<td>{{ product.name }}</td>
+					<td>{{ product.price }}</td>
+					<td>{{ product.quantity }}</td>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="window.location.href='/modifier'">Modifier</button>
+					</td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}
