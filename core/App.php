@@ -8,16 +8,31 @@ class App
 {
     public function run()
     {
-        if ($_SERVER['REQUEST_URI'] == '/') {
+        $uri = strtok($_SERVER['REQUEST_URI'], '?');
+        if ($uri == '/') {
             echo 'bonjour';
 
-        } else if ($_SERVER['REQUEST_URI'] == '/products') {
+        } else if ($uri == '/products') {
             $controller = new ProductController();
             $controller->index();
 
-        } else if ($_SERVER['REQUEST_URI'] == '/modifier') {
+        } else if ($uri == '/modifier/') {
             $controller = new ProductController();
-            $controller->modifierQuantite();
+            $controller->updateForm();
+
+        } else if ($uri == '/supprimer/') {
+            $controller = new ProductController();
+            $controller->deleteForm();
+
+
+        } else if ($uri == '/products/update') {
+            $controller = new ProductController;
+            $controller->updateInDB();
+
+
+        } else if ($uri == '/products/supprimer') {
+            $controller = new ProductController;
+            $controller->deleteOneInDb();
 
 
         } else {

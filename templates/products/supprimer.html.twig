@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block formulaire2 %}
+
+
+	<form action="/products/supprimer" method="post">
+		<fieldset>
+			<legend>Supprimer
+				{{ product['name'] }}</legend>
+			<p>Êtes-vous sûr de vouloir supprimer "{{ product['name'] }}" ?</p>
+			<input type="hidden" id="id" name="id" value='{{product['id']}}'>
+			<button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+		</fieldset>
+	</form>
+
+
+{% endblock %}

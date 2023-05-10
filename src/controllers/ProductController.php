@@ -29,4 +29,77 @@ class ProductController extends BaseController
         // - - - Utilisez soit require() soit Twig
     }
 
+    public function updateForm()
+    {
+        $this->model->id = $_GET['id'];
+        $product = $this->model->getOne();
+        $this->render("products/modifier.html.twig", [
+            'product' => $product
+        ]);
+    }
+    public function deleteForm()
+    {
+        $this->model->id = $_GET['id'];
+        $product = $this->model->getOne();
+        $this->render("products/supprimer.html.twig", [
+            'product' => $product
+        ]);
+    }
+
+    public function updateInDB()
+    {
+        // 2. transmettre au modèle ton tableau POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $data = [
+                'id' => $_POST['id'],
+                'price' => $_POST['price'],
+                'quantity' => $_POST['quantity']
+            ];
+
+            $price = $_POST['price'];
+
+            // Vérifier si la valeur est valide
+            if ($price < 0.1) {
+                echo "Le prix doit être supérieur ou égal à 0,10 €";
+            } elseif ($price > 20.0) {
+                echo "Le prix doit être inférieur ou égal à 20,00 €";
+            } else {
+
+                $product = new Product();
+
+                $product->update($data);
+
+                // 4. redirect vers /products
+                header('Location: /products');
+
+                // }
+
+            }
+
+
+        }
+
+    }
+
+    public function deleteOneInDb()
+    {
+        // 2. transmettre au modèle ton tableau POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $product = new Product();
+
+            $product->deleteOneInDb($_POST['id']);
+
+            // 4. redirect vers /products
+            header('Location: /products');
+
+            // }
+
+        }
+
+
+    }
+
 }

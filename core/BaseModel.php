@@ -44,12 +44,4 @@ abstract class BaseModel
         return $query->fetchAll();
     }
 
-    public function updateQuantity($id, $newQuantity)
-    {
-        $sql = "UPDATE products SET quantity = :quantity WHERE id = :id";
-        $query = $this->_connexion->prepare($sql);
-        $query->bindParam(':id', $id);
-        $query->bindParam(':quantity', $newQuantity);
-        return $query->execute();
-    }
 }
