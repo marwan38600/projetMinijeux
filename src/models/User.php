@@ -6,11 +6,11 @@ namespace src\models;
 
 use core\Basemodel;
 
-class Product extends BaseModel
+class User extends BaseModel
 {
     public function __construct()
     {
-        $this->table = 'produits';
+        $this->table = 'utilisateurs';
         $this->getConnection();
     }
 
@@ -19,16 +19,24 @@ class Product extends BaseModel
 
 
         $id = $data['id'];
-        $price = $data['price'];
-        $quantity = $data['quantity'];
+        $firstName = $data['firstName'];
+        $lastName = $data['lastName'];
+        $email = $data['email'];
+        $password = $data['password'];
+        $budget = $data['budget'];
+        $isAdmin = $data['isAdmin'];
 
         $sql = "UPDATE produits SET price = :price, quantity = :quantity WHERE id = :id";
 
         $query = $this->_connexion->prepare($sql);
 
         $query->bindParam(':id', $id);
-        $query->bindParam(':price', $price);
-        $query->bindParam(':quantity', $quantity);
+        $query->bindParam(':firstName', $firstName);
+        $query->bindParam(':lastName', $lastName);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':password', $password);
+        $query->bindParam(':budget', $budget);
+        $query->bindParam(':isAdmin', $isAdmin);
 
         $resultat = $query->execute();
 
@@ -62,14 +70,17 @@ class Product extends BaseModel
         }
 
     }
-    public function addToDb($nom, $prix, $quantite)
+    public function addToDb($firstName, $lastName, $email, $password, $budget, $isAdmin)
     {
-        $sql = "INSERT INTO produits (name, price, quantity) VALUES (:nom, :prix, :quantite)";
+        $sql = "INSERT INTO produits (firstName, lastName, email, password, budget, isAdmin, ) VALUES (:firstName, :lastName, :email, :password, :budget, :isAdmin)";
         $query = $this->_connexion->prepare($sql);
 
-        $query->bindParam(':nom', $nom);
-        $query->bindParam(':prix', $prix);
-        $query->bindParam(':quantite', $quantite);
+        $query->bindParam(':firstName', $firstName);
+        $query->bindParam(':lastName', $lastName);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':password', $password);
+        $query->bindParam(':budget', $budget);
+        $query->bindParam(':isAdmin', $isAdmin);
 
         $resultat = $query->execute();
         return $resultat;

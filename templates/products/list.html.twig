@@ -6,6 +6,9 @@
 {% block content %}
 
 	<h2>Liste des produits</h2>
+	<a href="/products/addForm">
+		<button type="button" class="btn btn-success btn-primary btn-lg">Ajouter un produit</button>
+	</a>
 	<table class="table">
 		<thead>
 			<tr>
@@ -25,10 +28,15 @@
 					<td>{{ product.price }}</td>
 					<td>{{ product.quantity }}</td>
 					<td>
-						<button type="button" class="btn btn-primary" onclick="window.location.href='/modifier/?id={{ product.id }}'">Modifier</button>
+						<a href="/products/updateForm?id={{ product.id }}">
+							<button type="button" class="btn btn-primary">Modifier</button>
+						</a>
+
 					</td>
 					<td>
-						<button type="button" class="btn btn-danger" onclick="window.location.href='/supprimer/?id={{ product.id }}'">Supprimer</button>
+						<a href="/products/deleteForm?id={{ product.id }}">
+							<button type="button" class="btn btn-danger">Supprimer</button>
+						</a>
 					</td>
 
 				</tr>

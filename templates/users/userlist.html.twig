@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Page Products
+{% endblock %}
+
+{% block content %}
+
+	<h2>Liste des utilisateurs</h2>
+	<button type="button" class="btn btn-success btn-primary btn-lg" onclick="window.location.href='/ajouter'">Ajouter un utilisateur</button>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Prenom</th>
+				<th>Nom</th>
+				<th>Email</th>
+				<th>Password</th>
+				<th>Budget</th>
+				<th>Admin</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.firstName }}</td>
+					<td>{{ user.LastName }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.password }}</td>
+					<td>{{ user.budget }}</td>
+					<td>{{ user.isAdmin }}</td>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="window.location.href='/modifier/?id={{ product.id }}'">Modifier</button>
+					</td>
+					<td>
+						<button type="button" class="btn btn-danger" onclick="window.location.href='/supprimer/?id={{ product.id }}'">Supprimer</button>
+					</td>
+
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

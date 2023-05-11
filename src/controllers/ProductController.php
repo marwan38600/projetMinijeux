@@ -16,7 +16,7 @@ class ProductController extends BaseController
     }
 
     // L'action index récupère les données du modèle et charge la vue
-    public function index()
+    public function list()
     {
         $products = $this->model->getAll();
         $this->render("products/list.html.twig", array('products' => $products));
@@ -33,7 +33,7 @@ class ProductController extends BaseController
     {
         $this->model->id = $_GET['id'];
         $product = $this->model->getOne();
-        $this->render("products/modifier.html.twig", [
+        $this->render("products/update.html.twig", [
             'product' => $product
         ]);
     }
@@ -41,12 +41,16 @@ class ProductController extends BaseController
     {
         $this->model->id = $_GET['id'];
         $product = $this->model->getOne();
-        $this->render("products/supprimer.html.twig", [
+        $this->render("products/delete.html.twig", [
             'product' => $product
         ]);
     }
+    public function addForm()
+    {
+        $this->render("products/add.html.twig", []);
+    }
 
-    public function updateInDB()
+    public function update()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -83,7 +87,7 @@ class ProductController extends BaseController
 
     }
 
-    public function deleteOneInDb()
+    public function delete()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -101,5 +105,21 @@ class ProductController extends BaseController
 
 
     }
+    public function add()
+    {
+        // 2. transmettre au modèle ton tableau POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $product = new Product();
+
+            $product->addToDb($_POST['nom'], $_POST['prix'], $_POST['quantite']);
+
+            // 4. redirect vers /products
+            header('Location: /products');
+
+        }
+
+    }
+
 
 }
