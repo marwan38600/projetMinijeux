@@ -45,19 +45,32 @@ class App
 
         } else if ($uri == '/users') {
             $controller = new UserController();
-            $controller->index();
+            $controller->list();
 
-        } else if ($uri == '/users/ajouter') {
-            $controller = new UserController;
-            $controller->addOneInDb();
+        } else if ($uri == '/users/updateForm') {
+            $controller = new UserController();
+            $controller->updateForm();
 
-        } else if ($uri == '/users/supprimer') {
+        } else if ($uri == '/users/deleteForm') {
+            $controller = new UserController();
+            $controller->deleteForm();
+
+        } else if ($uri == '/users/addForm') {
+            $controller = new UserController();
+            $controller->addForm();
+
+        } else if ($uri == '/users/add') {
             $controller = new UserController;
-            $controller->deleteOneInDb();
+            $controller->add();
+
+        } else if ($uri == '/users/delete') {
+            $controller = new UserController;
+            $controller->delete();
 
         } else if ($uri == '/users/update') {
             $controller = new UserController;
-            $controller->updateInDB();
+            $controller->update();
+
 
 
 

@@ -26,7 +26,7 @@ class User extends BaseModel
         $budget = $data['budget'];
         $isAdmin = $data['isAdmin'];
 
-        $sql = "UPDATE produits SET price = :price, quantity = :quantity WHERE id = :id";
+        $sql = "UPDATE utilisateurs SET firstName = :firstName, lastName = :lastName, email = :email, password = :password, budget = :budget, isAdmin = :isAdmin WHERE id = :id";
 
         $query = $this->_connexion->prepare($sql);
 
@@ -53,7 +53,7 @@ class User extends BaseModel
 
     public function deleteOneInDb($id)
     {
-        $sql = "DELETE FROM produits WHERE id = :id";
+        $sql = "DELETE FROM utilisateurs WHERE id = :id";
 
         $query = $this->_connexion->prepare($sql);
 
@@ -72,7 +72,7 @@ class User extends BaseModel
     }
     public function addToDb($firstName, $lastName, $email, $password, $budget, $isAdmin)
     {
-        $sql = "INSERT INTO produits (firstName, lastName, email, password, budget, isAdmin, ) VALUES (:firstName, :lastName, :email, :password, :budget, :isAdmin)";
+        $sql = "INSERT INTO utilisateurs (firstName, lastName, email, password, budget, isAdmin) VALUES (:firstName, :lastName, :email, :password, :budget, :isAdmin)";
         $query = $this->_connexion->prepare($sql);
 
         $query->bindParam(':firstName', $firstName);

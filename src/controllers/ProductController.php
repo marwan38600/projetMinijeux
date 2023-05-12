@@ -54,8 +54,6 @@ class ProductController extends BaseController
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
             $data = [
                 'id' => $_POST['id'],
                 'price' => $_POST['price'],
@@ -70,56 +68,31 @@ class ProductController extends BaseController
             } elseif ($price > 20.0) {
                 echo "Le prix doit être inférieur ou égal à 20,00 €";
             } else {
-
                 $product = new Product();
-
                 $product->update($data);
 
                 // 4. redirect vers /products
                 header('Location: /products');
-
-                // }
-
             }
-
-
         }
-
     }
 
     public function delete()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $product = new Product();
-
             $product->deleteOneInDb($_POST['id']);
-
-            // 4. redirect vers /products
             header('Location: /products');
-
-            // }
-
         }
-
-
     }
     public function add()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $product = new Product();
-
             $product->addToDb($_POST['nom'], $_POST['prix'], $_POST['quantite']);
-
-            // 4. redirect vers /products
             header('Location: /products');
-
         }
-
     }
-
-
 }

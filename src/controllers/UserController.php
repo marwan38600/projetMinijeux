@@ -18,10 +18,10 @@ class UserController extends BaseController
     }
 
     // L'action index récupère les données du modèle et charge la vue
-    public function index()
+    public function list()
     {
         $users = $this->model->getAll();
-        $this->render("users/userlist.html.twig", array('users' => $users));
+        $this->render("users/list.html.twig", array('users' => $users));
 
         // Grâce aux méthodes du modèle, on récupère les données
         // que l'on stocke dans un tableau $produits
@@ -35,7 +35,7 @@ class UserController extends BaseController
     {
         $this->model->id = $_GET['id'];
         $user = $this->model->getOne();
-        $this->render("users/usermodifier.html.twig", [
+        $this->render("users/update.html.twig", [
             'user' => $user
         ]);
     }
@@ -43,16 +43,16 @@ class UserController extends BaseController
     {
         $this->model->id = $_GET['id'];
         $user = $this->model->getOne();
-        $this->render("users/usersupprimer.html.twig", [
+        $this->render("users/delete.html.twig", [
             'user' => $user
         ]);
     }
     public function addForm()
     {
-        $this->render("users/userajouter.html.twig", []);
+        $this->render("users/add.html.twig", []);
     }
 
-    public function updateInDB()
+    public function update()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -60,7 +60,7 @@ class UserController extends BaseController
 
             $data = [
                 'id' => $_POST['id'],
-                'firstName ' => $_POST['firstName'],
+                'firstName' => $_POST['firstName'],
                 'lastName' => $_POST['lastName'],
                 'email' => $_POST['email'],
                 'password' => $_POST['password'],
@@ -71,7 +71,7 @@ class UserController extends BaseController
 
             $user->update($data);
 
-            // 4. redirect vers /products
+            // 4. redirect vers /users
             header('Location: /users');
 
             // }
@@ -83,7 +83,7 @@ class UserController extends BaseController
 
     }
 
-    public function deleteOneInDb()
+    public function delete()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -101,7 +101,7 @@ class UserController extends BaseController
 
 
     }
-    public function addOneInDb()
+    public function add()
     {
         // 2. transmettre au modèle ton tableau POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block formulaire %}
+
+	<form action="/users/update" method="post">
+		<fieldset>
+			<legend>{{ user['firstName'] }}
+				{{ user['lastName'] }}</legend>
+
+			<input type="hidden" id="id" name="id" value='{{user['id']}}'>
+			<div class="mb-3">
+				<label for="firstName" class="form-label">Prenom</label>
+				<input type="text" class="form-control" id="firstName" name="firstName" value='{{user['firstName']}}'>
+			</div>
+			<div class="mb-3">
+				<label for="lastName" class="form-label">Nom</label>
+				<input type="text" class="form-control" id="lastName" name="lastName" value='{{user['lastName']}}'>
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">Email</label>
+				<input type="text" class="form-control" id="email" name="email" value='{{user['email']}}'>
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input type="text" class="form-control" id="password" name="password" value='{{user['password']}}'>
+			</div>
+			<div class="mb-3">
+				<label for="budget" class="form-label">Budget</label>
+				<input type="number" class="form-control" id="Budget" name="budget" value='{{user['budget']}}'>
+			</div>
+			<div class="mb-3">
+				<label for="isAdmin" class="form-label">isAdmin</label>
+				<input type="number" class="form-control" id="isAdmin" name="isAdmin" value='{{user['isAdmin']}}'>
+			</div>
+			<button type="submit" class="btn btn-primary">Valider</button>
+		</fieldset>
+	</form>
+
+
+{% endblock %}

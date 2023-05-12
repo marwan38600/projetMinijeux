@@ -1,12 +1,14 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Page Products
+{% block title %}Page Users
 {% endblock %}
 
 {% block content %}
 
 	<h2>Liste des utilisateurs</h2>
-	<button type="button" class="btn btn-success btn-primary btn-lg" onclick="window.location.href='/ajouter'">Ajouter un utilisateur</button>
+	<a href="/users/addForm">
+		<button type="button" class="btn btn-success btn-primary btn-lg">Ajouter un utilisateur</button>
+	</a>
 	<table class="table">
 		<thead>
 			<tr>
@@ -26,16 +28,21 @@
 				<tr>
 					<td>{{ user.id }}</td>
 					<td>{{ user.firstName }}</td>
-					<td>{{ user.LastName }}</td>
+					<td>{{ user.lastName }}</td>
 					<td>{{ user.email }}</td>
 					<td>{{ user.password }}</td>
 					<td>{{ user.budget }}</td>
 					<td>{{ user.isAdmin }}</td>
 					<td>
-						<button type="button" class="btn btn-primary" onclick="window.location.href='/modifier/?id={{ product.id }}'">Modifier</button>
+						<a href="/users/updateForm?id={{ user.id }}">
+							<button type="button" class="btn btn-primary">Modifier</button>
+						</a>
+
 					</td>
 					<td>
-						<button type="button" class="btn btn-danger" onclick="window.location.href='/supprimer/?id={{ product.id }}'">Supprimer</button>
+						<a href="/users/deleteForm?id={{ user.id }}">
+							<button type="button" class="btn btn-danger">Supprimer</button>
+						</a>
 					</td>
 
 				</tr>
