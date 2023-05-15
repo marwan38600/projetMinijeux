@@ -86,4 +86,22 @@ class User extends BaseModel
         return $resultat;
 
     }
+
+    public function authenticate($email, $password)
+    {
+        $sql = "SELECT * FROM utilisateurs WHERE email = :email";
+        $query = $this->_connexion->prepare($sql);
+        $query->bindParam(':email', $email);
+        $query->execute();
+        $user = $query->fetch();
+
+        if (password_verify($password, $user['password'])) {
+            // Le mot de passe est valide, l'utilisateur est authentifié
+            $_SESSION['user_id'] = $user['id'];
+            return true;
+        } else {
+            // L'utilisateur n'a pas été trouvé ou le mot de passe est invalide
+            return false;
+        }
+    }
 }

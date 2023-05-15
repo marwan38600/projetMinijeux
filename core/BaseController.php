@@ -11,7 +11,7 @@ class BaseController
         $this->twig = new \Twig\Environment($loader);
     }
 
-    public function render($name, $context)
+    public function render($name, $context = [])
     {
         echo $this->twig->render($name, $context);
     }

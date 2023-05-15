@@ -2,11 +2,16 @@
 
 namespace core;
 
+use src\Controllers\LoginController;
 use src\Controllers\ProductController;
 use src\Controllers\UserController;
 
 class App
 {
+    public function __construct()
+    {
+        session_start();
+    }
     public function run()
     {
         $uri = strtok($_SERVER['REQUEST_URI'], '?');
@@ -70,6 +75,12 @@ class App
         } else if ($uri == '/users/update') {
             $controller = new UserController;
             $controller->update();
+
+            //--------------Login--------------//
+
+        } else if ($uri == '/login') {
+            $controller = new LoginController;
+            $controller->login();
 
 
 

@@ -95,4 +95,5 @@ class ProductController extends BaseController
             header('Location: /products');
         }
     }
+
 }
